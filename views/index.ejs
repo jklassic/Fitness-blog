@@ -1,0 +1,53 @@
+<%- include('./partials/head.ejs') %> 
+
+<body>
+    <%- include('./partials/nav.ejs') %> 
+    <div class="blogs content">
+        <h2>All Blogs</h2>
+        <% if(blogs.length > 0) { %>
+            <% blogs.forEach((blog)=>{ %>
+                <div class="post-content">
+                    <div>
+                        <a href="/blogs/<%= blog._id %>">
+                            <h3 class="title"><%= blog.title %> </h3>
+                            <p class="snippet"><%= blog.snippet %> </p>
+                        </a>
+                    </div>
+                    <div class="action">
+                        <form action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
+                            <button class="delete" style="background-color: red; color: white;">DELETE</button>
+                        </form>
+                        
+                        
+                        <!-- <a data-postid="<%= blog._id %>" class="delete">Delete Post</a> -->
+                    </div>
+                </div>                
+            <% }) %>
+        <% } else { %>
+            <p>No Post Today</p>
+        <% } %>
+    </div>
+
+
+
+    <%- include('./partials/footer.ejs') %> 
+
+    <!-- <script>
+        const deleteBtn = document.querySelector('.delete');
+        deleteBtn.addEventListener("click", (e)=>{
+            const postID = deleteBtn.dataset.postid;
+            const requestEndPoint = `/blogs/${postID}`;
+            
+            fetch(requestEndPoint, {
+                method: 'DELETE'
+            }).then((data)=>{
+                
+                window.location.href = data.redirect
+                console.log(data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        })
+    </script> -->
+</body>
+</html>

@@ -1,0 +1,21 @@
+<%- include('./partials/head.ejs') %> 
+
+<body>
+    <%- include ('./partials/nav.ejs') %>     
+    <div class="create-blog content">
+        <form action="/blogs/signup" method="post">
+            <label for="username">Username:</label>
+            <input type="text" placeholder="Username" name="username" id="username" required>
+
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" placeholder="Email" required>
+
+            <label for="body">Password:</label>
+            <input type="password" name="password" id="password">
+
+            <button>Submit</button>
+        </form>   
+    </div>
+    <%- include('./partials/footer.ejs') %> 
+</body>
+</html>

@@ -1,0 +1,23 @@
+<%-  include('./partials/head.ejs') %> 
+<body>
+    <%- include('./partials/nav.ejs') %> 
+
+    <div class="details content">
+        <h2 id="title"><%= blog.title %> </h2>
+        <h3  id="snippet"><%= blog.snippet %> </h3>
+        <p id="body"><%= blog.body %></p>
+        
+        <div id="update">
+            <button class="Edit"> <a href="/blogs/updateblogs/<%= blog._id %>">EDIT</a></button>
+            <!-- <form action="/blogs/">
+                <button class="Edit" id="edit">EDIT</button>
+            </form>
+            <form action="/blogs/<%= blog._id%>?_method=PUT" method="post">
+                <button class="Done" id="done">DONE</button>
+            </form> -->
+        </div>
+    </div>
+    <%- include('./partials/footer.ejs') %>
+        
+</body>
+</html>

@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap&#39');
+    
+body {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    font-family: 'Noto Serif', serif;
+}
+    
+p, h1, h2, h3, a, ul {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #222;
+}
+    
+/* nav & footer styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    text-transform: uppercase;
+}
+    
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+    
+nav li {
+    list-style-type: none;
+    margin-left: 20px;
+}
+    
+nav h1 {
+    font-size: 3em;
+}
+    
+nav p, nav a {
+    color: #777;
+    font-weight: 300;
+}
+    
+footer {
+    color: #777;
+    text-align: center;
+    margin: 80px auto 20px;
+}
+    
+h2 {
+    margin-bottom: 40px;
+}
+    
+h3 {
+    text-transform: capitalize;
+    margin-bottom: 8px;
+}
+    
+.content {
+    margin-left: 20px;
+}
+    
+/* index styles */
+/* details styles */
+/* create styles */
+.create-blog form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+    
+.create-blog input,
+.create-blog textarea {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+}
+    
+.create-blog label {
+    display: block;
+    margin-top: 24px;
+}
+    
+textarea {
+    height: 120px;
+}
+    
+.create-blog button {
+    margin-top: 20px;
+    background: crimson;
+    color: white;
+    padding: 6px;
+    border: 0;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.post-content {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 1px 2px 8px rgb(58, 58, 58);
+    margin: 10px 0;
+    padding: 12px;
+}
+
+#image {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+}
+
+.delete, .back {
+    background-color: orangered;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#update {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sentmail{
+    width: 50%;
+    margin: 30px auto;
+    padding: 10px;
+    background-color: blue;
+}
+.sentmailh2{
+    color: white;
+    padding: 1em;
+}
+
+.Edit, .Done{
+    background-color: rgb(255, 165,0);
+    color: #FFF;
+    border: 1px black solid;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    border-radius: 8px;
+    padding: 6px 12px;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    /* font-family: cursive; */
+}
+
+.Edit:hover,.Done:hover{
+    /* margin-top: 1em; */
+    box-shadow: 2px 2px 1px #777;
+}
