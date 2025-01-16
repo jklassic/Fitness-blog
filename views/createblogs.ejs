@@ -4,8 +4,11 @@
     <%- include ('./partials/nav.ejs') %>     
     <div class="create-blog content">
         <form action="/blogs/create" method="post">
-            <label for="title">Blog title:</label>
+            <label for="title">Blog Title:</label>
             <input type="text" placeholder="Blog Title" name="title" id="title">
+
+            <label for="title">Blog Image:</label>
+            <input type="text" name="image" id="title">
 
             <label for="snippet">Blog Snippet:</label>
             <input type="text" name="snippet" id="snippet" placeholder="Blog Snippet">

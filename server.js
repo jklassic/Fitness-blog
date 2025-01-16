@@ -24,8 +24,8 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.get("/", async (req, res)=>{
-    const blogs = await Blog.find()
-    res.render('index.ejs', {title: 'HOME', blogs})    
+    const blogs = (await Blog.find()).reverse()
+    res.render('index.ejs', {title: 'HOME', blogs})
 })
 
 app.get("/about", (req, res)=>{
@@ -198,11 +198,12 @@ app.get("/blogs/updateblogs/:postid",  async (req, res)=>{
 app.put('/blogs/:postid', async (req, res)=>{
     try {
         const postID = req.params.postid;
-        const body = req.body;
+        const body = req.body;        
+        res.redirect('/')
         const  updatePost = await Blog.findByIdAndUpdate(postID, body, {new: true, runValidators: true});
         // console.log(updatePost)
         res.redirect('/')
-    } catch (e) {
+    } catch (err) {
         console.log(err)
     }
 })
