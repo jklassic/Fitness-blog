@@ -10,11 +10,24 @@ const cookieJWTAuth = require("./cookieAuth.js");
 const User = require('./models/user.js');
 const Blog = require('./models/blog.js');
 const connectDB = require('./utils/connectDB.js')
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+})
+
+const upload = multer({ storage })
 
 connectDB()
 
 const app = express();
-const port = 8080;
+const port = 3000;
 app.set('views engine', 'ejs')
 
 app.use(express.static('public'))
@@ -22,9 +35,10 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'))
 app.use(cookieParser());
 app.use(express.json());
+app.use('/uploads', express.static('uploads'))
 
 app.get("/", async (req, res)=>{
-    const blogs = (await Blog.find()).reverse()
+    const blogs = (await Blog.find()).reverse();
     res.render('index.ejs', {title: 'HOME', blogs})
 })
 
@@ -40,9 +54,14 @@ app.get("/blogs/create", (req, res)=>{
     res.render("createblogs.ejs",  {title: 'NEW BLOG'})
 })
 
-app.post("/blogs/create", async (req, res)=>{
+app.post("/blogs/create", upload.single('image'), async (req, res)=>{
     try {
-        const blog = new Blog(req.body);
+        const blog = new Blog({
+            title: req.body.title,
+            snippet: req.body.snippet,
+            body: req.body.body,
+            image: req.file.path
+        });
     console.log(blog)
 
     await blog.save().then(()=>{
@@ -213,5 +232,5 @@ app.use((req, res)=>{
 })
 
 app.listen(port, ()=>{
-    console.log('Server is currently running')
+    console.log(`Server is running on port ${port}`)
 })

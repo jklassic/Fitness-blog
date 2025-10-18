@@ -1,0 +1,96 @@
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+
+const app = express();
+const port = 3000;
+
+// Secret key for JWT (change this to a strong random string in production)
+const jwtSecret = 'your_secret_key';
+
+// Sample user data (In production, use a database to store user credentials)
+const users = [
+  {
+    id: 1,
+    username: 'user1',
+    passwordHash: '$2b$10$/xCrjghYbAXk73CzHdqugeK92heVNCmL.e58p7Qexq9.LjOPFPv7S', // password: secret1
+  },
+  {
+    id: 2,
+    username: 'user2',
+    passwordHash: '$2b$10$HxOlm6w0K12dXH4.WdU/H.OEHFElb6f8FZp7A.KrxMJ1yx7wQrm9m', // password: secret2
+  },
+];
+
+// Middleware to parse cookies
+app.use(cookieParser());
+
+// Middleware to parse JSON request bodies
+app.use(express.json());
+
+// Login route
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // Find the user by username (In production, fetch user data from a database)
+  const user = users.find((user) => user.username === username);
+
+  // Check if user exists
+  if (!user) {
+    return res.status(401).json({ message: 'Invalid credentials' });
+  }
+
+  // Compare the provided password with the hashed password
+  bcrypt.compare(password, user.passwordHash, (err, isMatch) => {
+    if (err) {
+      return res.status(500).json({ message: 'Error while comparing passwords' });
+    }
+
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: '1h' });
+
+    // Set the token as a cookie (In production, secure the cookie with HTTPS)
+    res.cookie('token', token, { httpOnly: true });
+
+    // Return success response
+    res.json({ message: 'Login successful' });
+  });
+});
+
+// Protected route - requires a valid token
+app.get('/protected', (req, res) => {
+  // Get the token from the cookie
+  const token = req.cookies.token;
+
+  // Check if token exists
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  // Verify the token
+  jwt.verify(token, jwtSecret, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: 'Invalid token' });
+    }
+
+    // Token is valid, send the protected data (In production, fetch data from a database)
+    const protectedData = { secretInfo: 'This is protected information' };
+    res.json(protectedData);
+  });
+});
+
+// Logout route - clear the token from the cookie
+app.post('/logout', (req, res) => {
+  res.clearCookie('token');
+  res.json({ message: 'Logout successful' });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
