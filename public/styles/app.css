@@ -70,6 +70,19 @@ h3 {
 .content {
     margin-left: 20px;
 }
+
+.content #title {
+    text-transform: uppercase;
+    text-decoration: underline black dotted 5px;
+    text-underline-offset: 5px;
+}
+
+.content p {
+    margin-top: 10px;
+    text-align: justify;
+    line-height: 30px;
+    
+}
     
 /* index styles */
 /* details styles */

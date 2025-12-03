@@ -3,7 +3,7 @@
     <%- include('./partials/nav.ejs') %> 
 
     <div class="details content">
-        <h2 id="title"><%= blog.title %> </h2>
+        <h2 id="title" class="font-monospace"><%= blog.title %></h2>
         <h3  id="snippet"><%= blog.snippet %> </h3>
         <img src="/<%= blog.image %>" alt="image">
         <p id="body"><%= blog.body %></p>
@@ -19,6 +19,15 @@
         </div>
     </div>
     <%- include('./partials/footer.ejs') %>
+
+    
+    <!-- <script>
+
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const originalXter = document.getElementById("title").textContent;
+            const capitalizedXter = originalXter.toUpperCase()
+        })
+    </script> -->
         
 </body>
 </html>

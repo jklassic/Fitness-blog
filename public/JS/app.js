@@ -1,27 +1,35 @@
 
-        const editBtn = document.getElementById('edit')
-        const doneBtn = document.getElementById("Done")
-        const title = document.getElementById("title")
-        const snippet = document.getElementById("snippet")
-        const body = document.getElementById("body")
+// const editBtn = document.getElementById('edit')
+// const doneBtn = document.getElementById("Done")
+// const title = document.getElementById("title")
+// const snippet = document.getElementById("snippet")
+// const body = document.getElementById("body")
 
-        editBtn.addEventListener("click", function(){
-            title.contentEditable = true;
-            snippet.contentEditable = true;
-            body.contentEditable = true;
+// editBtn.addEventListener("click", function(){
+//     title.contentEditable = true;
+//     snippet.contentEditable = true;
+//     body.contentEditable = true;
 
-            title.style.backgroundColor = "#dddbdb";
-            snippet.style.backgroundColor = "#dddbdb";
-            body.style.backgroundColor = "#dddbdb";
-        })
+//     title.style.backgroundColor = "#dddbdb";
+//     snippet.style.backgroundColor = "#dddbdb";
+//     body.style.backgroundColor = "#dddbdb";
+// })
 
-        doneBtn.addEventListener("click", function(){
-       
-            title.contentEditable = false;
-            snippet.contentEditable = false;
-            body.contentEditable = false; 
+// doneBtn.addEventListener("click", function(){
+//     title.contentEditable = false;
+//     snippet.contentEditable = false;
+//     body.contentEditable = false; 
 
-            title.style.backgroundColor = "#fff";
-            snippet.style.backgroundColor = "#fff";
-            body.style.backgroundColor = "#fff";
-        })
+//     title.style.backgroundColor = "#fff";
+//     snippet.style.backgroundColor = "#fff";
+//     body.style.backgroundColor = "#fff";
+// })
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     const el = document.querySelector(".blogTitle").textContent;
+//     const originalXter = el.textContent;
+//     console.log(originalXter);
+
+//     const capitalizedXter = originalXter.toUpperCase();
+//     console.log(capitalizedXter);
+// });
